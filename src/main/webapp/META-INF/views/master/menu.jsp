@@ -56,6 +56,7 @@
       		<acme:menu-suboption code="master.menu.administrator.notice.create" action="/administrator/notice/create" access="hasRole('Administrator')"/>
       		<acme:menu-suboption code="master.menu.administrator.inquiry.create" action="/administrator/inquiry/create" access="hasRole('Administrator')"/>
 			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.dashboard" action="/administrator/dashboard/show" access="hasRole('Administrator')"/>
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
 		</acme:menu-option>
 
@@ -77,7 +78,7 @@
 		<acme:menu-option code="master.menu.investor" access="hasRole('Investor')">
 			<acme:menu-suboption code="master.menu.investor.application.list" action="/investor/application/list-mine"/>
 			<acme:menu-suboption code="master.menu.investor.investmentRound.list" action="/investor/investment-round/list"/>
-			
+			<acme:menu-suboption code="master.menu.investor.funding.list" action="/investor/funding/list"/>
 		</acme:menu-option>
 		
 	</acme:menu-left>

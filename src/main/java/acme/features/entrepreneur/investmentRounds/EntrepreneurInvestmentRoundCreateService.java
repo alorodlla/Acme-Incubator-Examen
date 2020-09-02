@@ -11,9 +11,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.fundings.Funding;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.parameters.Parameter;
 import acme.entities.roles.Entrepreneur;
+import acme.entities.roles.Investor;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -146,6 +148,14 @@ public class EntrepreneurInvestmentRoundCreateService implements AbstractCreateS
 
 		}
 
+		if (!request.getModel().getString("fdescription").isEmpty()) {
+
+			if (!errors.hasErrors("fdescription")) {
+				String description = request.getModel().getAttribute("fdescription").toString();
+				boolean aux = description.length() >= 256;
+				errors.state(request, !aux, "fdescription", "entrepreneur.investmentRound.form.error.fundingDescription");
+			}
+		}
 	}
 
 	@Override
@@ -156,6 +166,21 @@ public class EntrepreneurInvestmentRoundCreateService implements AbstractCreateS
 		entity.setFinalMode(false);
 
 		this.repository.save(entity);
+
+		if (!request.getModel().getAttribute("fdescription").toString().isEmpty()) {
+			Funding funding = new Funding();
+
+			String description = request.getModel().getAttribute("fdescription").toString();
+
+			funding.setDescription(description);
+			funding.setInvestmentRound(entity);
+
+			Collection<Investor> investors;
+			investors = this.repository.findInvestors();
+			funding.setInvestor(investors);
+
+			this.repository.save(funding);
+		}
 
 	}
 

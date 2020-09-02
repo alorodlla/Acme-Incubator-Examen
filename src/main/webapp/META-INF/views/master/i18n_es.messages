@@ -65,6 +65,7 @@ master.menu.administrator = Administrador
 master.menu.administrator.user-accounts = Cuentas de usuario
 master.menu.administrator.showRequest = Parametros
 master.menu.administrator.shutdown = Parar el sistema
+master.menu.dashboard= Tablas
 
 # master.menu.provider ########################################################
 
@@ -86,6 +87,7 @@ master.menu.entrepreneur.investmentRound.create = Crear Inversiones
 master.menu.investor = Inversor
 master.menu.investor.application.list = Aplicaciones
 master.menu.investor.investmentRound.list = Inversiones
+master.menu.investor.funding.list = Financiamiento
 
 # master.menu.user-account ####################################################
 

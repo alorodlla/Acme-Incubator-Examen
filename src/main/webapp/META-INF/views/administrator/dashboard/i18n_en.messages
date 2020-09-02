@@ -1,0 +1,5 @@
+administrator.dashboard.form.label.investmentRoundsWithFunding= Ratio of investment rounds with funding
+administrator.dashboard.form.label.applicationWithOffer= Ratio of applications with offer
+administrator.dashboard.form.label.applicationsAccepted= Ratio of applications with accepted
+
+administrator.dashboard.form.button.return= Return

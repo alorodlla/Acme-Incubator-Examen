@@ -388,4 +388,21 @@
 		<property value="Technology, Science, Arts, Business, Health" name="activitySector"/>
 	</bean>
 	
+	<!-- Offer -->
+
+	<bean class="acme.entities.offers.Offer" id="offer">
+		<property value="Example description for an offer" name="offer"/>
+		<property value="strong-password1" name="password"/>
+		<property value="http://localhost:8080/acme-incubator" name="link"/>
+		<property name="application" ref= "Application01"/>
+	</bean>
+	
+	<!-- Funding -->
+
+	<bean class="acme.entities.fundings.Funding" id="funding">
+		<property value="Example description for a funding" name="description"/>
+		<property name="investor" ref= "investor1Investor"/>
+		<property name="investmentRound" ref= "investmentRound02"/>
+	</bean>
+	
 </beans>

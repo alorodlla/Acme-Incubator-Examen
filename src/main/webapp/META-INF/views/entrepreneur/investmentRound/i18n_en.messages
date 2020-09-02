@@ -17,6 +17,7 @@ entrepreneur.investmentRound.form.error.budgetsNotSumAmount = Activity budgets s
 entrepreneur.investmentRound.form.error.budgetsIsNull = There are not activities associated to the investment
 entrepreneur.investmentRound.amount.currency.error = Money currency is euros
 entrepreneur.investmentRound.ticker.tickerInUse = The ticker is already in use
+entrepreneur.investmentRound.form.error.fundingDescription = Description should be shorter than 256 characters
 
 entrepreneur.investmentRound.form.label.activities = Work Programme
 entrepreneur.investmentRound.form.label.createActivities = Create Activity
@@ -25,3 +26,4 @@ entrepreneur.investmentRound.form.button.update = Update
 entrepreneur.investmentRound.form.button.create= Create
 entrepreneur.investmentRound.form.button.delete= Delete
 entrepreneur.investmentRound.button.return = Return
+entrepreneur.investmentRound.form.button.funding = Funding

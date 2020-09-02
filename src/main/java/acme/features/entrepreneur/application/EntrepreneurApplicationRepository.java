@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.applications.Application;
+import acme.entities.offers.Offer;
 import acme.entities.parameters.Parameter;
 import acme.framework.repositories.AbstractRepository;
 
@@ -24,4 +25,7 @@ public interface EntrepreneurApplicationRepository extends AbstractRepository {
 
 	@Query("select a from Application a join a.iRound ir where ir.id=?1")
 	Collection<Application> findManyByInvestmentRound(int iRoundId);
+
+	@Query("select o from Offer o where o.application.id= ?1")
+	Offer findOfferByApplicationId(int offerId);
 }

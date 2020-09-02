@@ -9,10 +9,12 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.util.UrlUtils;
 import org.springframework.stereotype.Service;
 
 import acme.entities.applications.Application;
 import acme.entities.investmentRounds.InvestmentRound;
+import acme.entities.offers.Offer;
 import acme.entities.parameters.Parameter;
 import acme.entities.roles.Entrepreneur;
 import acme.entities.roles.Investor;
@@ -35,7 +37,8 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 
 		boolean result;
 
-		result = request.getPrincipal().hasRole(Investor.class);
+		InvestmentRound ir = this.repository.findInvestmentRoundById(request.getModel().getInteger("iRoundId"));
+		result = request.getPrincipal().hasRole(Investor.class) && ir.isFinalMode();
 		return result;
 
 	}
@@ -55,6 +58,15 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+
+		model.setAttribute("iRoundId", request.getModel().getInteger("iRoundId"));
+		int id;
+		id = request.getModel().getInteger("iRoundId");
+		if (this.repository.findFundingByInvestmentRoundId(id) != null) {
+			model.setAttribute("hasFunding", true);
+		} else {
+			model.setAttribute("hasFunding", false);
+		}
 
 		model.setAttribute("iRoundId", request.getModel().getInteger("iRoundId"));
 
@@ -152,6 +164,18 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 			errors.state(request, !ParameterMethods.isSpam(statement, spamWords, spamThreshold), "statement", "investor.application.form.error.spamStatement");
 		}
 
+		if (request.getModel().getBoolean("hasFunding")) {
+			//errors.state(request, !(request.getModel().getAttribute("password").toString().trim() != "" && request.getModel().getAttribute("trackId").toString().trim() == ""), "trackId", "investor.application.form.error.invalidTrackId");
+			errors.state(request, !((request.getModel().getAttribute("password").toString().trim() != "" || request.getModel().getAttribute("link").toString().trim() != "") && request.getModel().getAttribute("offer").toString().trim() == ""), "offer",
+				"investor.application.form.error.invalidOffer");
+			errors.state(request, request.getModel().getString("password").matches("^(?=(?:.*\\d){1,})(?=(?:.*[a-zA-Z]){1,})(?=(?:.*\\p{Punct}){1,}).{10,}$|^$"), "password", "investor.application.form.error.password");
+			if (!errors.hasErrors("link") && request.getModel().getAttribute("link").toString().trim() != "") {
+				boolean isURL;
+				isURL = UrlUtils.isAbsoluteUrl(request.getModel().getAttribute("link").toString());
+				errors.state(request, isURL, "link", "investor.application.error.NotUrl");
+			}
+		}
+
 	}
 
 	@Override
@@ -161,5 +185,18 @@ public class InvestorApplicationCreateService implements AbstractCreateService<I
 
 		this.repository.save(entity);
 
+		if (request.getModel().getBoolean("hasFunding")) {
+			String offer = request.getModel().getAttribute("offer").toString();
+			String password = request.getModel().getAttribute("password").toString();
+			Offer off = new Offer();
+
+			if (request.getModel().getAttribute("offer") != null && offer.trim() != "") {
+				off.setOffer(offer);
+				off.setPassword(password);
+				off.setApplication(entity);
+
+				this.repository.save(off);
+			}
+		}
 	}
 }

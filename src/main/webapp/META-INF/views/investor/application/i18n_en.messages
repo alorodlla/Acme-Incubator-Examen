@@ -17,5 +17,18 @@ investor.application.moneyOffer.error.currency = Can't use a currency that isn't
 investor.application.moneyOffer.error.negativeMoney = Can't use negative amounts
 investor.application.ticker.error.tickerInUse = The ticker is already in use
 
+investor.application.form.label.offer= Offer information
+investor.application.form.label.offerOffer= Offer
+investor.application.form.label.offerPassword= Password
+investor.application.form.label.offerLink= Link
+investor.application.form.label.status = Status
+
+investor.application.form.error.offerOffer= Must not be blank
+investor.application.form.button.return= Return
+investor.application.form.error.password= Password must contain at least a numbers, a char and a symbols with min lenght 10
+investor.application.form.error.invalidOffer= Invalid offer
+investor.application.error.NotUrl = Invalid URL
+
+investor.application.form.button.offer = Offer
 investor.application.form.button.create = Create
 investor.application.form.button.return = Return

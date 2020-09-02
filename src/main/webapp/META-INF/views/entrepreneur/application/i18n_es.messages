@@ -18,5 +18,6 @@ investor.application.form.error.spamJustification = La justificación no puede c
 
 entrepreneur.application.form.label.investmentRounds = Ronda de inversión asociada
 entrepreneur.application.form.button.update = Actualizar
+entrepreneur.application.form.button.offer = Oferta
 entrepreneur.application.form.button.return = Volver
 

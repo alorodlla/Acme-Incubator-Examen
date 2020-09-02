@@ -17,6 +17,18 @@ investor.application.moneyOffer.error.currency = No se puede usar una moneda que
 investor.application.moneyOffer.error.negativeMoney = No se pueden usar cantidades negativas
 investor.application.ticker.error.tickerInUse = Este ticker ya esta en uso
 
+investor.application.form.label.offer= Datos de la oferta
+investor.application.form.label.offerOffer= Respuesta
+investor.application.form.label.offerPassword= Contraseña
+investor.application.form.label.offerLink= Link
+investor.application.form.label.status = Estatus
+
+investor.application.form.error.offerOffer= No debe estar en blanco
+investor.application.form.error.password= La contraseña debe contener al menos un digito, un numero y un simbolo y al menos tener longitud 10
+investor.application.form.error.invalidOffer= Respuesta incorrecta
+investor.application.error.NotUrl =  URL invalida
+
+investor.application.form.button.offer = Oferta
 investor.application.form.button.create = Crear
 investor.application.form.button.return = Volver
 

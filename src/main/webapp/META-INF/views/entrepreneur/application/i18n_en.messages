@@ -18,4 +18,5 @@ investor.application.form.error.spamJustification = The justification can't cont
 
 entrepreneur.application.form.label.investmentRounds = Investment round associated
 entrepreneur.application.form.button.update = Update
+entrepreneur.application.form.button.offer = Offer
 entrepreneur.application.form.button.return = Return

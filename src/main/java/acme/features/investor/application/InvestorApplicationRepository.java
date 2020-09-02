@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.applications.Application;
+import acme.entities.fundings.Funding;
 import acme.entities.investmentRounds.InvestmentRound;
+import acme.entities.offers.Offer;
 import acme.entities.parameters.Parameter;
 import acme.entities.roles.Investor;
 import acme.framework.repositories.AbstractRepository;
@@ -32,4 +34,10 @@ public interface InvestorApplicationRepository extends AbstractRepository {
 
 	@Query("select a from Application a")
 	Collection<Application> findAllApplications();
+
+	@Query("select f from Funding f where f.investmentRound.id= ?1")
+	Funding findFundingByInvestmentRoundId(int id);
+
+	@Query("select o from Offer o where o.application.id= ?1")
+	Offer findOfferByApplicationId(int offerId);
 }

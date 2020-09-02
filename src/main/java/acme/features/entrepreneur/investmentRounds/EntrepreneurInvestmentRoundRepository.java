@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import acme.entities.activities.Activity;
 import acme.entities.applications.Application;
+import acme.entities.fundings.Funding;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.entities.parameters.Parameter;
 import acme.entities.roles.Entrepreneur;
+import acme.entities.roles.Investor;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
@@ -42,4 +44,10 @@ public interface EntrepreneurInvestmentRoundRepository extends AbstractRepositor
 
 	@Query("select i from InvestmentRound i")
 	Collection<InvestmentRound> findAllInvestmentRounds();
+
+	@Query("select i from Investor i")
+	Collection<Investor> findInvestors();
+
+	@Query("select f from Funding f where f.investmentRound.id= ?1")
+	Funding findFundingByInvestmentRoundId(int investmentRoundId);
 }

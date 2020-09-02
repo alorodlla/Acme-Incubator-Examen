@@ -26,6 +26,9 @@ public class InvestorInvestmentRoundController extends AbstractController<Invest
 	@Autowired
 	private InvestorInvestmentRoundShowService2	showService2;
 
+	@Autowired
+	private InvestorInvestmentRoundShowService3	showService3;
+
 
 	@PostConstruct
 	private void initialise() {
@@ -33,6 +36,6 @@ public class InvestorInvestmentRoundController extends AbstractController<Invest
 		super.addBasicCommand(BasicCommand.LIST, this.listService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
 		super.addCustomCommand(CustomCommand.SHOW_MINE, BasicCommand.SHOW, this.showService2);
-
+		super.addCustomCommand(CustomCommand.SHOW_MINE_2, BasicCommand.SHOW, this.showService3);
 	}
 }

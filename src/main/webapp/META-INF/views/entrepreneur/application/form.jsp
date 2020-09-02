@@ -49,22 +49,19 @@
     <jstl:if test="${status != 'pending' && command == 'show'}">
         <acme:form-textarea code="entrepreneur.application.form.label.status" path="status" readonly="true"/>
     </jstl:if>
-    
 
     <acme:form-textarea code="entrepreneur.application.form.label.justification" path="justification"/>
 
-
-		
-	
 	<acme:form-submit test= "${command== 'show' }"
 		method="get" code="entrepreneur.application.form.label.investmentRounds" action="/entrepreneur/investment-round/show_mine?applicationId=${id}"/>
 
     <acme:form-submit test ="${command == 'show' && status == 'pending'}" code="entrepreneur.application.form.button.update" action="/entrepreneur/application/update"/>
     <acme:form-submit test ="${command == 'update'}" code="entrepreneur.application.form.button.update" action="/entrepreneur/application/update"/>
+       
+	<jstl:if test="${command != 'create' && hasOffer == true}">
+   		<acme:form-submit method="get" code="entrepreneur.application.form.button.offer" action="/entrepreneur/offer/show?applicationId=${id}"/>
+    </jstl:if>
+    
     <acme:form-return code="entrepreneur.application.form.button.return"/>
-	
-	
-	
-	
 	
 </acme:form>

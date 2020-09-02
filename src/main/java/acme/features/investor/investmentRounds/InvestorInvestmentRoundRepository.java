@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.entities.applications.Application;
+import acme.entities.fundings.Funding;
 import acme.entities.investmentRounds.InvestmentRound;
 import acme.framework.repositories.AbstractRepository;
 
@@ -21,4 +22,7 @@ public interface InvestorInvestmentRoundRepository extends AbstractRepository {
 
 	@Query("select ir from InvestmentRound ir where ir.finalMode = true")
 	Collection<InvestmentRound> findInvestmentRoundsActive();
+
+	@Query("select f from Funding f where f.id = ?1")
+	Funding findOneFundingById(int id);
 }
